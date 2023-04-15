@@ -44,6 +44,7 @@ func GetJobSpec() *v1.Job {
 					Containers: []apiv1.Container{
 						{
 							Name: "counter-job", Image: GoDotEnvVariable("PROFILER_IMAGE"), Env: GetContainerEnvVars(),
+							ImagePullPolicy: apiv1.PullIfNotPresent,
 						},
 					},
 					RestartPolicy: apiv1.RestartPolicyNever,
@@ -75,6 +76,7 @@ func GetCronJobSpec() *v1.CronJob {
 							Containers: []apiv1.Container{
 								{
 									Name: "counter-cron", Image: GoDotEnvVariable("PROFILER_IMAGE"), Env: GetContainerEnvVars(),
+									ImagePullPolicy: apiv1.PullIfNotPresent,
 								},
 							},
 							RestartPolicy: apiv1.RestartPolicyNever,
